@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">weather-app</string>
+    <string name="hour_text_tools">5:00 AM</string>
+    <string name="temperature_text_tools">-3°</string>
+    <string name="date_text_tools">Tomorrow, Sat 15</string>
+    <string name="weather_description_text_tools">Clear</string>
+    <string name="location_text_tools">Kivy</string>
+    <string name="last_update_text_tools">Last updated: 2:04</string>
 </resources>
