@@ -1,10 +1,9 @@
-package me.michigang1.weathapp.ui
+package me.michigang1.weathapp.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import me.michigang1.weathapp.R
 import me.michigang1.weathapp.databinding.ActivityMainBinding
-import me.michigang1.weathapp.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

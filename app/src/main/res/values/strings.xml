@@ -8,4 +8,7 @@
     <string name="last_update_text_tools">Last updated: 2:04</string>
     <string name="my_location">my_location</string>
     <string name="search_location">search_location</string>
+    <string name="why_i_need_permission_message">I can\'t find you without this permission</string>
+    <string name="if_has_not_permission_text">Too sad, you can\'t use this amazing feature!</string>
+    <string name="grant">Grant</string>
 </resources>
