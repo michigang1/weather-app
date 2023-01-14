@@ -6,4 +6,6 @@
     <string name="weather_description_text_tools">Clear</string>
     <string name="location_text_tools">Kyiv</string>
     <string name="last_update_text_tools">Last updated: 2:04</string>
+    <string name="my_location">my_location</string>
+    <string name="search_location">search_location</string>
 </resources>
