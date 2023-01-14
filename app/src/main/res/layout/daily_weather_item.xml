@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="@dimen/daily_weather_item_layout_padding">
+
+    <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/date_text_size"
+            tools:text="@string/date_text_tools" />
+
+    <ImageView
+            android:id="@+id/picture_image_view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/weather_img_size"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black" />
+
+    <TextView
+            android:id="@+id/high_temperature_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:gravity="end"
+            android:textColor="@color/black"
+            android:textSize="@dimen/daily_temperature_text_size"
+            tools:text="@string/temperature_text_tools" />
+
+    <TextView
+            android:id="@+id/low_temperature_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:textColor="@color/black"
+            android:textSize="@dimen/daily_temperature_text_size"
+            tools:text="@string/temperature_text_tools" />
+
+</LinearLayout>

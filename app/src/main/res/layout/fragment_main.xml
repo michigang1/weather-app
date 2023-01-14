@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/temperature_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/now_temperature_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/temperature_text_tools" />
+
+    <TextView
+            android:id="@+id/high_temperature_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/high_and_low_temperature_text_size"
+            app:layout_constraintEnd_toStartOf="@id/low_temperature_text_view"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/temperature_text_view"
+            tools:text="@string/temperature_text_tools" />
+
+    <TextView
+            android:id="@+id/low_temperature_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/high_and_low_temperature_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/high_temperature_text_view"
+            app:layout_constraintTop_toBottomOf="@id/temperature_text_view"
+            tools:text="@string/temperature_text_tools" />
+
+    <TextView
+            android:id="@+id/weather_description_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/weather_description_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/high_temperature_text_view"
+            tools:text="@string/weather_description_text_tools" />
+
+    <TextView
+            android:id="@+id/location_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/location_text_view_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/location_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather_description_text_view"
+            tools:text="@string/location_text_tools" />
+
+    <TextView
+            android:id="@+id/last_update_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/last_update_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location_text_view"
+            tools:text="@string/last_update_text_tools" />
+
+    <View
+            android:id="@+id/first_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/first_line_view_margin"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/last_update_text_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hourly_weather_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/first_line_view"
+            tools:listitem="@layout/hourly_weather_item" />
+
+    <View
+            android:id="@+id/second_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/hourly_weather_recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/daily_weather_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/second_line_view"
+            tools:listitem="@layout/daily_weather_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
