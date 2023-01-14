@@ -17,6 +17,7 @@ class MainViewModel(private val locationRepo: LocationRepository) : ViewModel() 
             locationRepo.currentLocation() {
                 _lastLocation.value = "${it.latitude} ${it.longitude}"
             }
+            locationRepo.removeUpdates()
         }
     }
 }

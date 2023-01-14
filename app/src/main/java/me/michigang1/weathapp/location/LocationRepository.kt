@@ -4,4 +4,6 @@ import android.location.Location
 
 interface LocationRepository {
     suspend fun currentLocation(callback: (Location) -> Unit)
+
+    suspend fun removeUpdates()
 }
