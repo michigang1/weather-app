@@ -1,6 +1,8 @@
 package me.michigang1.weathapp.network.impl
 
 import android.location.Location
+import me.michigang1.weathapp.BuildConfig
+import me.michigang1.weathapp.BuildConfig.WEATHER_API_KEY
 import me.michigang1.weathapp.entities.CurrentWeatherEntity
 import me.michigang1.weathapp.network.NetworkRepository
 import me.michigang1.weathapp.network.controller.WeatherController
@@ -11,11 +13,6 @@ import retrofit2.Response
 class NetworkRepositoryImpl(
     private val weatherApi: WeatherController
 ) : NetworkRepository {
-
-    companion object {
-        private const val WEATHER_API_KEY = "fb3ebda36499376de58913ffa4eded60"
-    }
-
     override suspend fun fetchCurrentWeather(
         location: Location,
         callback: (Result<CurrentWeatherEntity>) -> Unit

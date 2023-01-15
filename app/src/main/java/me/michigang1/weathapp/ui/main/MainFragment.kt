@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
-import me.michigang1.weathapp.App
 import me.michigang1.weathapp.R
 import me.michigang1.weathapp.databinding.FragmentMainBinding
 import me.michigang1.weathapp.entities.CurrentWeatherEntity
@@ -34,7 +33,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     override fun onAttach(context: Context) {
-        App.INSTANCE.appComponent.inject(this)
         super.onAttach(context)
     }
 

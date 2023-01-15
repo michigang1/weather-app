@@ -39,7 +39,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/temperature_text_view"
-            tools:text="@string/temperature_text_tools" />
+            tools:text="@string/temperature_text" />
 
     <TextView
             android:id="@+id/low_temperature_text_view"
@@ -51,7 +51,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/high_temperature_text_view"
             app:layout_constraintTop_toBottomOf="@id/temperature_text_view"
-            tools:text="@string/temperature_text_tools" />
+            tools:text="@string/temperature_text" />
 
     <TextView
             android:id="@+id/weather_description_text_view"
@@ -78,7 +78,7 @@
             android:id="@+id/location_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/Theme.Weatherapp"
             android:textColor="@color/black"
             android:textSize="@dimen/location_text_size"
             app:layout_constraintEnd_toEndOf="parent"

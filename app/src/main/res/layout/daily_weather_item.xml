@@ -35,7 +35,7 @@
             android:gravity="end"
             android:textColor="@color/black"
             android:textSize="@dimen/daily_temperature_text_size"
-            tools:text="@string/temperature_text_tools" />
+            tools:text="@string/temperature_text" />
 
     <TextView
             android:id="@+id/low_temperature_text_view"
@@ -45,6 +45,6 @@
             android:gravity="end"
             android:textColor="@color/black"
             android:textSize="@dimen/daily_temperature_text_size"
-            tools:text="@string/temperature_text_tools" />
+            tools:text="@string/temperature_text" />
 
 </LinearLayout>
