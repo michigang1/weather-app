@@ -13,6 +13,6 @@ class CurrentWeatherResponse {
     @SerializedName("name")
     var name: String? = null
 
-    @SerializedName("date")
+    @SerializedName("dt")
     var date: Long? = null
 }

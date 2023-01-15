@@ -17,6 +17,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/search_layout"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/search_line_margin"
+    android:hint="@string/search_hint"
+    app:endIconCheckable="true"
+    app:endIconDrawable="@drawable/ic_search"
+    app:endIconMode="custom"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="20"
+            android:singleLine="true" />
+
+</com.google.android.material.textfield.TextInputLayout>
+
     <TextView
             android:id="@+id/temperature_text_view"
             android:layout_width="wrap_content"
@@ -26,7 +49,7 @@
             android:textSize="@dimen/now_temperature_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_layout"
             tools:text="@string/temperature_text" />
 
     <TextView

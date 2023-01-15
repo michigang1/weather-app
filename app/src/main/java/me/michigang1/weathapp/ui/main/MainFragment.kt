@@ -9,6 +9,8 @@ import android.view.*
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.content.PermissionChecker
+import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -38,7 +40,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     companion object {
         fun newInstance() = MainFragment()
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        if (savedInstanceState == null) {
+            if (canAccessLocation()) viewModel.getLocation()
+            else checkLocationPermission()
+        }
+    }
     override fun onAttach(context: Context) {
         App.INSTANCE.appComponent.inject(this)
         super.onAttach(context)
@@ -58,11 +67,33 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         initRecyclerViews()
 
-        viewModel.lastLocationLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
+        with(binding) {
+            searchLayout.setEndIconOnClickListener {
+                viewModel.getLocationFromAddressName(inputEditText.text.toString())
+                inputEditText.setText("")
+                searchLayout.clearFocus()
+            }
+
+            inputEditText.setOnKeyListener { _, keyCode, _ ->
+                when (keyCode) {
+                    KeyEvent.KEYCODE_ENTER -> {
+                        viewModel.getLocationFromAddressName(inputEditText.text.toString())
+                        inputEditText.setText("")
+                        searchLayout.clearFocus()
+                        return@setOnKeyListener true
+                    }
+                    else -> {
+                        return@setOnKeyListener false
+                    }
+                }
+            }
+        }
+
+        viewModel.locationLiveData.observe(viewLifecycleOwner) {
             viewModel.getCurrentWeather(it)
             viewModel.getDetailedWeather(it)
         }
+
         viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) {
             initMainCurrentWeather(it)
         }
@@ -135,11 +166,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.search -> {
-                // todo
-                return true
-            }
-
             R.id.my_location -> {
                 checkLocationPermission()
                 return true
@@ -190,4 +216,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 ).show()
             }
         }
+
+    private fun canAccessLocation(): Boolean {
+        return hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+    private fun hasPermission(perm: String): Boolean {
+        return PermissionChecker.PERMISSION_GRANTED == checkSelfPermission(requireContext(), perm)
+    }
 }

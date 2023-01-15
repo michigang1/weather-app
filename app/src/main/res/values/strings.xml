@@ -5,7 +5,7 @@
     <string name="date_text_tools">Tomorrow, Sat 15</string>
     <string name="weather_description_text_tools">Clear</string>
     <string name="location_text">Kyiv</string>
-    <string name="last_update_text_tools">Last updated: 2:04</string>
+    <string name="last_update_text_tools">Last updated: </string>
     <string name="my_location">my_location</string>
     <string name="search_location">search_location</string>
     <string name="why_i_need_permission_message">I can\'t find you without this permission</string>
@@ -13,4 +13,5 @@
     <string name="grant">Grant</string>
     <string name="feels_like_text_tools">feels like</string>
     <string name="picture">picture</string>
+    <string name="search_hint">search city</string>
 </resources>

@@ -26,7 +26,7 @@ android {
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
             buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/data/2.5/\""
-            buildConfigField "String", "WEATHER_API_KEY", "\"fb3ebda36499376de58913ffa4eded60\""
+            buildConfigField "String", "WEATHER_API_KEY", "\"01267240e09cc1ec02e84386933203e5\""
             buildConfigField "String", "IMG_URL", "\"https://openweathermap.org/img/w/\""
         }
 

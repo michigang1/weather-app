@@ -9,15 +9,15 @@ import retrofit2.http.Query
 interface WeatherController {
     @GET("weather")
     fun getCurrentWeather(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double,
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
         @Query("appid") apiKey: String
     ): Call<CurrentWeatherResponse>
 
     @GET("onecall")
     fun getDetailedWeatherData(
-        @Query("latitude") lat: Double,
-        @Query("longitude") lon: Double,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("appid") apiKey: String,
         @Query("exclude") exclude: String = "current,minutely"
     ): Call<DetailedWeatherResponse>
