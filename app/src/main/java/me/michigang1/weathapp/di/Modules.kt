@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import me.michigang1.weathapp.BuildConfig.BASE_URL
 import me.michigang1.weathapp.location.LocationRepository
 import me.michigang1.weathapp.location.impl.LocationRepositoryImpl
 import me.michigang1.weathapp.network.NetworkRepository
@@ -47,9 +48,6 @@ class ViewModelFactoryModule {
 
 @Module
 class NetworkModule {
-    companion object {
-        private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
-    }
 
     @Provides
     @Singleton
@@ -71,18 +69,17 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideNetworkRepo(weatherApi: WeatherController): NetworkRepository = NetworkRepositoryImpl(weatherApi)
+}
 
-    @Singleton
-    @Component(
-        modules = [
-            ApplicationModule::class,
-            LocationModule::class,
-            ViewModelFactoryModule::class,
-            NetworkModule::class
-        ]
-    )
-    interface AppComponent {
-
-        fun inject(mainFragment: MainFragment)
-    }
+@Singleton
+@Component(
+    modules = [
+        ApplicationModule::class,
+        LocationModule::class,
+        ViewModelFactoryModule::class,
+        NetworkModule::class
+    ]
+)
+interface AppComponent {
+    fun inject(mainFragment: MainFragment)
 }

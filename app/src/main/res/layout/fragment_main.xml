@@ -53,6 +53,14 @@
             app:layout_constraintTop_toBottomOf="@id/temperature_text_view"
             tools:text="@string/temperature_text" />
 
+    <ImageView
+            android:id="@+id/main_picture_image_view"
+            android:layout_width="@dimen/main_weather_img_size"
+            android:layout_height="@dimen/main_weather_img_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/low_temperature_text_view" />
+
     <TextView
             android:id="@+id/weather_description_text_view"
             android:layout_width="wrap_content"
@@ -61,7 +69,7 @@
             android:textSize="@dimen/weather_description_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/high_temperature_text_view"
+            app:layout_constraintTop_toBottomOf="@id/main_picture_image_view"
             tools:text="@string/weather_description_text_tools" />
 
     <TextView

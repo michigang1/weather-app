@@ -1,13 +1,14 @@
-package me.michigang1.weathapp.entities
+package me.michigang1.weathapp.responses.current
 
 import com.google.gson.annotations.SerializedName
+import me.michigang1.weathapp.responses.WeatherResponse
 
-class CurrentWeatherEntity {
+class CurrentWeatherResponse {
     @SerializedName("weather")
-    var weather: List<WeatherEntity>? = null
+    var weather: List<WeatherResponse>? = null
 
     @SerializedName("main")
-    var main: MainEntity? = null
+    var main: MainResponse? = null
 
     @SerializedName("name")
     var name: String? = null

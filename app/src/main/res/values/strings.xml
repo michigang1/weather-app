@@ -12,4 +12,5 @@
     <string name="if_has_not_permission_text">Too sad, you can\'t use this amazing feature!</string>
     <string name="grant">Grant</string>
     <string name="feels_like_text_tools">feels like</string>
+    <string name="picture">picture</string>
 </resources>
