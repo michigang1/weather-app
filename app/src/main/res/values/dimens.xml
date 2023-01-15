@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_layout_margin">4dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="weather_img_size">40dp</dimen>
+    <dimen name="hour_text_size">14sp</dimen>
+    <dimen name="temperature_text_size">20sp</dimen>
+    <dimen name="daily_weather_item_layout_padding">10dp</dimen>
+    <dimen name="date_text_size">14sp</dimen>
+    <dimen name="daily_temperature_text_size">14sp</dimen>
+    <dimen name="now_temperature_text_size">72sp</dimen>
+    <dimen name="high_and_low_temperature_text_size">30sp</dimen>
+    <dimen name="weather_description_text_size">20sp</dimen>
+    <dimen name="location_text_view_margin">45dp</dimen>
+    <dimen name="location_text_size">20sp</dimen>
+    <dimen name="last_update_text_size">16sp</dimen>
+    <dimen name="first_line_view_margin">16dp</dimen>
+    <dimen name="feels_like_text_size">20sp</dimen>
+    <dimen name="progress_bar_margin">15dp</dimen>
+</resources>

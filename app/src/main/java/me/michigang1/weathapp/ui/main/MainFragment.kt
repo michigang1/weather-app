@@ -10,30 +10,34 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
+import me.michigang1.weathapp.App
 import me.michigang1.weathapp.R
 import me.michigang1.weathapp.databinding.FragmentMainBinding
+import me.michigang1.weathapp.entities.CurrentWeatherEntity
+import me.michigang1.weathapp.utils.Converter
 import javax.inject.Inject
-import by.kirich1409.viewbindingdelegate.viewBinding
-import me.michigang1.weathapp.App
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    
+
     @Inject
     lateinit var factory: MainViewModelFactory
-    
-    private val viewModel: MainViewModel by viewModels{ factory }
+
+    private val viewModel: MainViewModel by viewModels { factory }
     private val binding: FragmentMainBinding by viewBinding(FragmentMainBinding::bind)
-    
+
+    private val converter = Converter()
+
     companion object {
         fun newInstance() = MainFragment()
     }
-    
+
     override fun onAttach(context: Context) {
         App.INSTANCE.appComponent.inject(this)
         super.onAttach(context)
     }
-    
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +47,54 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    @Deprecated("Deprecated in Java")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.lastLocationLiveData.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
+            viewModel.getCurrentWeather(it)
+        }
+        viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) {
+            initMainCurrentWeather(it)
+        }
+
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.progressBarLiveData.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun initMainCurrentWeather(currentWeather: CurrentWeatherEntity) {
+        with(binding) {
+            val temp = "${currentWeather.main?.temp?.let { converter.kelvinToCelsius(it) }}°"
+            temperatureTextView.text = temp
+            val highTemp = "${currentWeather.main?.tempMax?.let { converter.kelvinToCelsius(it) }}°/"
+            highTemperatureTextView.text = highTemp
+            val lowTemp = "${currentWeather.main?.tempMin?.let { converter.kelvinToCelsius(it) }}°"
+            lowTemperatureTextView.text = lowTemp
+            weatherDescriptionTextView.text = currentWeather.weather?.get(0)?.description
+            val feelsLike =
+                "${getString(R.string.feels_like_text_tools)} ${
+                currentWeather.main?.feelsLike?.let {
+                    converter.kelvinToCelsius(
+                        it
+                    )
+                }
+                }°"
+            feelsLikeTextView.text = feelsLike
+            locationTextView.text = currentWeather.name
+            val lastUpdate =
+                "${getString(R.string.last_update_text_tools)} ${currentWeather.date?.let { converter.timeToHours(it) }}"
+            lastUpdateTextView.text = lastUpdate
+        }
+    } @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_main, menu)
@@ -56,6 +107,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 // todo
                 return true
             }
+
             R.id.my_location -> {
                 checkLocationPermission()
                 return true
@@ -63,15 +115,18 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun checkLocationPermission() {
         when {
-            (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )) == PackageManager.PERMISSION_GRANTED -> {
+            (
+                ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+                ) == PackageManager.PERMISSION_GRANTED -> {
                 viewModel.getLocation()
             }
-            
+
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
                 Snackbar.make(
                     binding.root,
@@ -84,13 +139,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                         locationPermissionRequest.launch(Manifest.permission.ACCESS_FINE_LOCATION)
                     }.show()
             }
-            
+
             else -> {
                 locationPermissionRequest.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             }
         }
     }
-    
+
     private val locationPermissionRequest =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             if (it) {

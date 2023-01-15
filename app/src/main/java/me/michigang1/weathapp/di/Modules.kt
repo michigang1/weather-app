@@ -6,9 +6,15 @@ import dagger.Component
 import dagger.Module
 import dagger.Provides
 import me.michigang1.weathapp.location.LocationRepository
-import me.michigang1.weathapp.location.LocationRepositoryImpl
+import me.michigang1.weathapp.location.impl.LocationRepositoryImpl
+import me.michigang1.weathapp.network.NetworkRepository
+import me.michigang1.weathapp.network.controller.WeatherController
+import me.michigang1.weathapp.network.impl.NetworkRepositoryImpl
 import me.michigang1.weathapp.ui.main.MainFragment
 import me.michigang1.weathapp.ui.main.MainViewModelFactory
+import retrofit2.Converter
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -35,13 +41,48 @@ class ViewModelFactoryModule {
 
     @Provides
     @Singleton
-    fun provideMainViewModelFactory(locationRepo: LocationRepository) =
-        MainViewModelFactory(locationRepo)
+    fun provideMainViewModelFactory(locationRepo: LocationRepository, networkRepository: NetworkRepository) =
+        MainViewModelFactory(locationRepo, networkRepository)
 }
 
-@Singleton
-@Component(modules = [ApplicationModule::class, LocationModule::class, ViewModelFactoryModule::class])
-interface AppComponent {
+@Module
+class NetworkModule {
+    companion object {
+        private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
+    }
 
-    fun inject(mainFragment: MainFragment)
+    @Provides
+    @Singleton
+    fun provideConverterFactory(): Converter.Factory = GsonConverterFactory.create()
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(
+        converterFactory: Converter.Factory
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(converterFactory)
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideWeatherApi(retrofit: Retrofit): WeatherController = retrofit.create(WeatherController::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNetworkRepo(weatherApi: WeatherController): NetworkRepository = NetworkRepositoryImpl(weatherApi)
+
+    @Singleton
+    @Component(
+        modules = [
+            ApplicationModule::class,
+            LocationModule::class,
+            ViewModelFactoryModule::class,
+            NetworkModule::class
+        ]
+    )
+    interface AppComponent {
+
+        fun inject(mainFragment: MainFragment)
+    }
 }

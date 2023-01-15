@@ -1,9 +1,10 @@
-package me.michigang1.weathapp.location
+package me.michigang1.weathapp.location.impl
 import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import me.michigang1.weathapp.location.LocationRepository
 
 class LocationRepositoryImpl(context: Context) : LocationRepository {
 
@@ -24,7 +25,7 @@ class LocationRepositoryImpl(context: Context) : LocationRepository {
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 REFRESH_RATE,
-                500f,
+                TRASH_HOLD,
                 locationListener
             )
 
@@ -38,6 +39,7 @@ class LocationRepositoryImpl(context: Context) : LocationRepository {
     }
 
     override suspend fun removeUpdates() {
+        isLocationListenerStarted = !isLocationListenerStarted
         locationManager.removeUpdates(locationListener)
     }
 
