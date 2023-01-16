@@ -5,7 +5,7 @@
 > 
 > <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/michigang1/weather-app?color=%23b57edc%20"> <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/michigang1/weather-app?color=2897DD&include_prereleases">
 >⠀⠀⠀⠀
-# michat
+# weather-app
 > An asynchronous MVVM Android-application written in Kotlin, using [openweathermap's](https://openweathermap.org) **API**.
 > 
 > View [_here_](https://github.com/michigang1/weather-app/tree/main/app/src/main). 
