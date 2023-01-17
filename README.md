@@ -1,10 +1,3 @@
->-----------------------------
-> <img alt="GitHub" src="https://img.shields.io/github/license/michigang1/weather-app">  <img alt="GitHub commit checks state" src="https://img.shields.io/github/checks-status/michigang1/michat/main?color=0000">
-> <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/michigang1/weather-app?color=0000">
-> <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/michigang1/weather-app"> <img alt="GitHub repo file count" src="https://img.shields.io/github/directory-file-count/michigang1/weather-app?color=00f24"> <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/michigang1/weather-app?color=00000">
-> 
-> <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/michigang1/weather-app?color=%23b57edc%20"> <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/michigang1/weather-app?color=2897DD&include_prereleases">
->⠀⠀⠀⠀
 # weather-app
 > An asynchronous MVVM Android-application written in Kotlin, using [openweathermap's](https://openweathermap.org) **API**.
 > 
@@ -13,8 +6,8 @@
 ## Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
-* [Screenshots](#screenshots) -->
-* [Setup](#setup) --><!-- * [Usage](#usage) -->
+* [Screenshots](#screenshots)
+* [Setup](#setup) <!-- * [Usage](#usage) -->
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
@@ -43,13 +36,11 @@
    - Glide
    - API
 
+
 ## Screenshots
-
-
-
-<!-- ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. --> -->
+|            1            |             2             |             3              |  
+|:-----------------------:|:-------------------------:|:--------------------------:| 
+| ![](./overview/img.png) | ![](./overview/img_1.png) | ![](./overview/img_2.png)  |
 
 ## Setup
  
